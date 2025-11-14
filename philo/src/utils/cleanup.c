@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi_mod.c                                         :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 19:42:30 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/12 20:55:18 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/14 14:29:27 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/14 14:30:04 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	atoi_mod(const char *argv)
+void	cleanup(t_table *table)
 {
-	int i;
-	int n;
-	
-	i = 0;
-	n = 0;
-	while (argv[i])
-	{
-		if (argv[i] < '0' || argv[i] > '9')
-			return (-1);
-		n = (n * 10) + (argv[i] - '0');		
-		i++;
-	}
-	return (n);	
+	destroy_mutexes(table);
+	free(table->forks);
+	free(table->philos);
 }
