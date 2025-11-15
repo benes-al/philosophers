@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:37:05 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/15 15:10:22 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/15 15:59:00 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <limits.h>
 # include <sys/time.h>
 # include <pthread.h>

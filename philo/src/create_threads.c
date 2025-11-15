@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create_threads.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 18:41:18 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/15 16:43:33 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/15 09:56:28 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/15 16:45:55 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int 	main(int argc, char **argv)
+void	create_threads(t_table *table)
 {
-	t_table table;
+	int i;
+
+	i = 0;
+	//philo->start_time = timestamp(void) + 10
+	while (i < table->nbr_of_philos)
+	{
+		pthread_create(&table->philos[i].thread, NULL, routine, &table->philos[i]);
+		i++;
+	}
 	
-	check_args(argc, argv);
-	(void) memset(&table, 0, sizeof(t_table));
-	init_table(&table, argc, argv);
-	create_threads(&table);
-	join_threads(&table);
-	return (0);
 }

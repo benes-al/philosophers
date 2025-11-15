@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   join_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 18:41:18 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/15 16:43:33 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/15 16:21:28 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/15 16:44:28 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int 	main(int argc, char **argv)
+void join_thread(t_table *table)
 {
-	t_table table;
+	int i;
 	
-	check_args(argc, argv);
-	(void) memset(&table, 0, sizeof(t_table));
-	init_table(&table, argc, argv);
-	create_threads(&table);
-	join_threads(&table);
-	return (0);
+	i = 0;
+	while(i < table->nbr_of_philos)
+	{
+		pthread_join(table->philos[i].thread, NULL);
+		i++;	
+	}
 }
