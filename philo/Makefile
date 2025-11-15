@@ -7,7 +7,7 @@ NAME        = philo
 
 # Compiler and flags
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g -\
+CFLAGS      = -Wall -Wextra -Werror -g
 
 # Source and object directories
 SRC_DIR     = src
@@ -22,9 +22,12 @@ SRC_FILES = \
 	cleanup.c \
 	ft_error_exit.c \
 	timestamp.c \
+	check_args.c \
+	create_threads.c \
 	init_table.c \
+	join_threads.c \
 	main.c \
-	parser_check_args.c \
+	routine.c
 
 # Convert source files to object files with prefix
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
