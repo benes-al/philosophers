@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:37:05 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/15 16:57:25 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/21 19:07:36 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,4 @@ void	create_threads(t_table *table);
 void	join_threads(t_table *table);
 void	*routine(void *philos);
 
-#endif PHILO_H
+#endif

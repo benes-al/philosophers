@@ -41,11 +41,14 @@ VPATH = src src/utils
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
-	$(CC) $(CFLAGS) -o $(NAME)
+$(NAME): $(OBJ_DIR) $(OBJS) 
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(PHILO_INC) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
