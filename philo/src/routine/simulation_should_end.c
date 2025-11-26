@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   simulation_should_end.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 16:20:01 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 22:34:18 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/26 22:34:48 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/26 22:35:02 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*routine(void *philos)
-{
-	t_philo *philo;
-	
-	philo = (t_philo *) philos;
-	while (!)
-	
-	return (NULL);
-}
