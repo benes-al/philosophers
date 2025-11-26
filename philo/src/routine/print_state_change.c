@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   print_state_change.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 09:56:28 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:23:44 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/26 19:22:16 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/26 20:56:43 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	create_threads(t_table *table)
+void	print_state_change(t_philo *philo, char *message, int ansi_color)
 {
-	int i;
-
-	i = 0;
-	table->start_time = timestamp();
-	while (i < table->nbr_of_philos)
+	long time;
+	
+	pthread_mutex_lock(&philo->table->print_mutex);
+	if(!simulation_should_end(philo->table))
 	{
-		pthread_create(&table->philos[i].thread, NULL, routine, &table->philos[i]);
-		if(pthread_create(&table->philos[i].thread,
-			NULL, routine, &table->philos[i]) != 0)
-		{
-			cleanup(table);
-			ft_exit_error("Failed to creat thread.");
-		}
-		i++;
+		time = timestamp() - philo->table->start_time;	
+		printf("\033[1;%dm%ld %d %s\033[0;0m\n",
+			ansi_color, time,message);		
 	}
+	pthread_mutex_unlock(&philo->table->print_mutex);
 }

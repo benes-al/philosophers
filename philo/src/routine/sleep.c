@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 16:20:01 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/21 18:55:48 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/26 19:20:19 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/26 22:15:17 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*routine(void *philos)
+void	sleep(t_philo *philo)
 {
-	t_philo *philo;
+	long	time_to_sleep;
+	long	time_to_eat;
+	long	time_to_die;
 	
-	philo = (t_philo *) philos;
-	while(timestamp < philo->table->start_time)
-		usleep(50);
-	pritnf(timestamp(void));
-	return (NULL);
+	time_to_sleep = philo->table->time_to_sleep;
+	time_to_eat = philo->table->time_to_eat;
+	time_to_die = philo->table->time_to_die;
+	if(time_to_eat + time_to_sleep > time_to_die)
+		time_to_sleep = time_to_die - time_to_eat; 
+	print_state_change(philo, SLEEPING, BLUE);
+	usleep(time_to_sleep * 1000);
 }

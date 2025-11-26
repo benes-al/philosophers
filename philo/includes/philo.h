@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:37:05 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/21 19:07:36 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/26 20:59:20 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 /*                               MACROS                                       */
 /******************************************************************************/
 
+# define FORKS    "has taken a fork"
+# define EATING   "is eating"
+# define SLEEPING "is sleeping"
+# define THINKING "is thinking"
+# define DIED     " died"
+
 /******************************************************************************/
 /*                               STRUCTS                                      */
 /******************************************************************************/
@@ -41,8 +47,9 @@ typedef struct s_table
 	int				nbr_of_meals_to_eat;
 	long			start_time;
 	int				simulation_should_end;
-	pthread_mutex_t	monitoring_mutex;
-	pthread_mutex_t	last_meal_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	simulation_should_end_mutex;
+	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	*forks;
 	struct s_philo	*philos;
 }				t_table;
@@ -65,12 +72,12 @@ typedef struct s_philo
 
 typedef enum 
 {
-	RED          = 31,
-    GREEN        = 32,
-    BLUE         = 34,
-	SOME		 = 0,
-    WHITE        = 37,
-    BRIGHT_YELLOW  = 93,
+	RED			= 31,
+    GREEN		= 32,
+    BLUE		= 34,
+	SOME		= 0,
+    WHITE		= 37,
+    YELLOW		= 93,
 }	AnsiColor;
 
 /******************************************************************************/
@@ -96,5 +103,12 @@ void	init_table(t_table *table, int argc, char **argv);
 void	create_threads(t_table *table);
 void	join_threads(t_table *table);
 void	*routine(void *philos);
+
+
+void	think(t_philo *philo);
+void	print_state_change(t_philo *philo, char *message, int ansi_color);
+void	take_forks(t_philo *philo);
+void	drop_forks(t_philo *philo);
+
 
 #endif

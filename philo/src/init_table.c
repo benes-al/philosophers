@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:28:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/21 17:12:52 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/26 20:30:53 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,14 @@ static void init_fork(t_table *table)
 	if(!table->forks)
 		ft_error_exit("malloc forks failure");
 	while(i < table->nbr_of_philos)
-		pthread_mutex_init(&table->forks[i++], NULL);
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		{
+			cleanup(table);
+			ft_exit_error("Failed to init mutex.");
+		}	
+		i++;
+	}
 }
 
 static void init_philo(t_table *table)
@@ -58,8 +65,21 @@ void init_table(t_table *table, int argc, char **argv)
 		table->nbr_of_meals_to_eat = argv[5];
 	else
 		table->nbr_of_meals_to_eat = -1;
-	pthread_mutex_init(&table->monitoring_mutex, NULL);
+	pthread_mutex_init(&table->print_mutex, NULL);
+	{
+		cleanup(table);
+		ft_exit_error("Failed to init mutex.");
+	}
+	pthread_mutex_init(&table->simulation_should_end_mutex, NULL);
+	{
+		cleanup(table);
+		ft_exit_error("Failed to init mutex.");
+	}
 	pthread_mutex_init(&table->last_meal_mutex, NULL);
+	{
+		cleanup(table);
+		ft_exit_error("Failed to init mutex.");
+	}
 	init_forks(table);
 	init_philos(table);
 }

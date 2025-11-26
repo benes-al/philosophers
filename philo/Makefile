@@ -33,7 +33,7 @@ SRC_FILES = \
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # Tell make where to find source files
-VPATH = src src/utils
+VPATH = src src/utils src/routine
 
 # **************************************************************************** #
 #                                MAKE RULES                                    #

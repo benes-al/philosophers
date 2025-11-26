@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_threads.c                                   :+:      :+:    :+:   */
+/*   think.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 09:56:28 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:23:44 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/26 19:20:13 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/26 20:39:32 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	create_threads(t_table *table)
+void	think(t_philo *philo)
 {
-	int i;
-
-	i = 0;
-	table->start_time = timestamp();
-	while (i < table->nbr_of_philos)
-	{
-		pthread_create(&table->philos[i].thread, NULL, routine, &table->philos[i]);
-		if(pthread_create(&table->philos[i].thread,
-			NULL, routine, &table->philos[i]) != 0)
-		{
-			cleanup(table);
-			ft_exit_error("Failed to creat thread.");
-		}
-		i++;
-	}
+	print(philo, THINKING, YELLOW);
 }
