@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:37:05 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:59:20 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/29 16:45:32 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <limits.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 /******************************************************************************/
 /*                               MACROS                                       */
@@ -33,6 +34,20 @@
 # define SLEEPING "is sleeping"
 # define THINKING "is thinking"
 # define DIED     " died"
+
+/******************************************************************************/
+/*                               ENUMS                                        */
+/******************************************************************************/
+
+typedef enum 
+{
+	RED			= 31,
+	GREEN		= 32,
+	BLUE		= 34,
+	SOME		= 0,
+	WHITE		= 37,
+	YELLOW		= 93,
+}	AnsiColor;
 
 /******************************************************************************/
 /*                               STRUCTS                                      */
@@ -47,8 +62,8 @@ typedef struct s_table
 	int				nbr_of_meals_to_eat;
 	long			start_time;
 	int				simulation_should_end;
-	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	simulation_should_end_mutex;
+	pthread_mutex_t	print_state_change_mutex;
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	*forks;
 	struct s_philo	*philos;
@@ -65,27 +80,11 @@ typedef struct s_philo
 	struct s_table	*table;
 }	t_philo;
 
-
-/******************************************************************************/
-/*                               ENUMS                                        */
-/******************************************************************************/
-
-typedef enum 
-{
-	RED			= 31,
-    GREEN		= 32,
-    BLUE		= 34,
-	SOME		= 0,
-    WHITE		= 37,
-    YELLOW		= 93,
-}	AnsiColor;
-
 /******************************************************************************/
 /*                               UTILS                                        */
 /******************************************************************************/
 
 int		atoi_mod(const char *argv);
-void	cleanup(t_table *table);
 void	ft_error_exit(char *message);
 long	timestamp(void);
 
@@ -101,14 +100,34 @@ void	check_args(int argc, char **argv);
 
 void	init_table(t_table *table, int argc, char **argv);
 void	create_threads(t_table *table);
-void	join_threads(t_table *table);
+
+/******************************************************************************/
+/*                                 routine                                    */
+/******************************************************************************/
+
 void	*routine(void *philos);
-
-
-void	think(t_philo *philo);
-void	print_state_change(t_philo *philo, char *message, int ansi_color);
+void	eating(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	thinking(t_philo *philo);
 void	take_forks(t_philo *philo);
 void	drop_forks(t_philo *philo);
+void	print_state_change(t_philo *philo, char *message, int ansi_color);
+bool	read_value_simulation_should_end(t_table *table);
 
+/******************************************************************************/
+/*                                 supervise                                  */
+/******************************************************************************/
+
+void	supervise(t_table *table);
+bool	is_philo_satisfied(t_table *table, int philo_index);
+bool	is_philo_alive(t_table *table, int philo_index);
+void	change_value_simulation_should_end(t_table *table);
+
+/******************************************************************************/
+/*                                 cleanup                                    */
+/******************************************************************************/
+
+void	cleanup(t_table *table);
+void	join_threads(t_table *table);
 
 #endif

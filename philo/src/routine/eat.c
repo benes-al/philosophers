@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:20:28 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 22:29:08 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:24:48 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->last_meal = timestamp();
 	pthread_mutex_unlock(&philo->table->meal_mutex);
-	print(philo, EATING, GREEN);
+	print_state_change(philo, EATING, GREEN);
 	usleep(time_to_eat * 1000);
 	pthread_mutex_lock(&philo->table->meal_mutex);
 	philo->meals_eaten += 1;

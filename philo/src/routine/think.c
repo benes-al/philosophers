@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:20:13 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:39:32 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:24:28 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	think(t_philo *philo)
 {
-	print(philo, THINKING, YELLOW);
+	print_state_change(philo, THINKING, YELLOW);
 }

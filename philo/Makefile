@@ -18,6 +18,16 @@ PHILO_INC			= -Iincludes
 
 # Source files (paths relative to SRC_DIR)
 SRC_FILES = \
+	eat.c \
+	print_state_change.c \
+	read_boolean_simulation_should_end.c \
+	routine.c \
+	sleep.c \
+	take_drop_forks.c \
+	think.c \
+	is_philo_alive.c \
+	is_philo_satisfied.c \
+	supervise.c \
 	atoi_mod.c \
 	cleanup.c \
 	ft_error_exit.c \
@@ -27,13 +37,13 @@ SRC_FILES = \
 	init_table.c \
 	join_threads.c \
 	main.c \
-	routine.c
+	supervise.c
 
 # Convert source files to object files with prefix
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # Tell make where to find source files
-VPATH = src src/utils src/routine
+VPATH = src src/utils src/routine src/supervise
 
 # **************************************************************************** #
 #                                MAKE RULES                                    #

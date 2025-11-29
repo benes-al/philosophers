@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_state_change.c                               :+:      :+:    :+:   */
+/*   is_philo_alive.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 19:22:16 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/27 19:22:46 by benes-al         ###   ########.fr       */
+/*   Created: 2025/11/29 16:10:23 by benes-al          #+#    #+#             */
+/*   Updated: 2025/11/29 16:20:02 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_state_change(t_philo *philo, char *message, int ansi_color)
+bool	is_philo_alive(t_table *table, int philo_index)
 {
-	long time;
+	long last_meal;
 	
-	pthread_mutex_lock(&philo->table->print_state_change_mutex);
-	if(!simulation_should_end(philo->table))
-	{
-		time = timestamp() - philo->table->start_time;	
-		printf("\033[1;%dm%ld %d %s\033[0;0m\n",
-			ansi_color, time,message);		
-	}
-	pthread_mutex_unlock(&philo->table->print_state_change_mutex);
+	pthread_mutex_lock(&table->meal_mutex);
+	last_meal = table->philos[philo_index].last_meal;
+	pthread_mutex_unlock(&table->meal_mutex);
+	if (timestamp() - last_meal >= table->time_to_die)
+		return (0);
+	else
+		return (1);
 }

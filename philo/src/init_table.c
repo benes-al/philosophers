@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:28:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:30:53 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/27 19:31:47 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void init_fork(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		{
 			cleanup(table);
-			ft_exit_error("Failed to init mutex.");
+			ft_exit_error("Failed to init forks mutex.");
 		}	
 		i++;
 	}
@@ -65,20 +65,20 @@ void init_table(t_table *table, int argc, char **argv)
 		table->nbr_of_meals_to_eat = argv[5];
 	else
 		table->nbr_of_meals_to_eat = -1;
-	pthread_mutex_init(&table->print_mutex, NULL);
+	pthread_mutex_init(&table->print_state_change_mutex, NULL);
 	{
 		cleanup(table);
-		ft_exit_error("Failed to init mutex.");
+		ft_exit_error("Failed to init print_state_change_mutex mutex.");
 	}
 	pthread_mutex_init(&table->simulation_should_end_mutex, NULL);
 	{
 		cleanup(table);
-		ft_exit_error("Failed to init mutex.");
+		ft_exit_error("Failed to init simulation_should_end_mutex mutex.");
 	}
-	pthread_mutex_init(&table->last_meal_mutex, NULL);
+	pthread_mutex_init(&table->meal_mutex, NULL);
 	{
 		cleanup(table);
-		ft_exit_error("Failed to init mutex.");
+		ft_exit_error("Failed to init meal mutex.");
 	}
 	init_forks(table);
 	init_philos(table);

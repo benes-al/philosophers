@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:20:01 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 22:34:18 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/29 14:13:00 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,26 @@
 void	*routine(void *philos)
 {
 	t_philo *philo;
-	
+
 	philo = (t_philo *) philos;
-	while (!)
-	
+	if (philo->table->nbr_of_philos == 1)
+	{
+		print_state_change(philo, FORKS, WHITE);
+		return(NULL);
+	}
+	while (!read_value_simulation_should_end(&philo->table))
+	{
+		eating(philo);
+		if (read_value_simulation_should_end(&philo->table))
+			return (NULL);
+		sleeping(philo);
+		if (read_value_simulation_should_end(&philo->table))
+			return (NULL);
+		thinking(philo);
+		if (read_value_simulation_should_end(&philo->table))
+			return (NULL);
+		if (philo->id % 2 != 0 && philo->table->nbr_of_philos % 2 != 0)
+			usleep(1000);
+	}
 	return (NULL);
 }
