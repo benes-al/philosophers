@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:28:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 20:10:43 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 22:13:52 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,97 @@ void	init_table(t_table *table, int argc, char **argv)
 	}
 	init_forks(table);
 	init_philos(table);
+}
+
+
+
+
+
+typedef struct s_table
+{
+    int nbr_of_philos;
+    pthread_t *threads;
+    t_philo *philos;
+    pthread_mutex_t *forks;
+
+    pthread_mutex_t print_mutex;
+    pthread_mutex_t sim_mutex;
+    pthread_mutex_t meal_mutex;
+
+    int forks_initialized;
+    int print_mutex_initialized;
+    int sim_mutex_initialized;
+    int meal_mutex_initialized;
+
+    int threads_created;
+
+    // ... other fields ...
+}   t_table;
+
+
+int init_table(t_table *table, int argc, char **argv)
+{
+    table->forks_initialized = 0;
+    table->print_mutex_initialized = 0;
+    table->sim_mutex_initialized = 0;
+    table->meal_mutex_initialized = 0;
+    table->threads_created = 0;
+
+    table->nbr_of_philos = atoi(argv[1]);
+
+    table->forks = malloc(sizeof(pthread_mutex_t) * table->nbr_of_philos);
+    table->threads = malloc(sizeof(pthread_t) * table->nbr_of_philos);
+    table->philos = malloc(sizeof(t_philo) * table->nbr_of_philos);
+
+    if (!table->forks || !table->threads || !table->philos)
+        return (1);
+
+    // Init forks one by one
+    for (int i = 0; i < table->nbr_of_philos; i++)
+    {
+        if (pthread_mutex_init(&table->forks[i], NULL) != 0)
+            return (1);
+        table->forks_initialized++;
+    }
+
+    // Init other mutexes (each tracked)
+    if (pthread_mutex_init(&table->print_mutex, NULL) != 0)
+        return (1);
+    table->print_mutex_initialized = 1;
+
+    if (pthread_mutex_init(&table->sim_mutex, NULL) != 0)
+        return (1);
+    table->sim_mutex_initialized = 1;
+
+    if (pthread_mutex_init(&table->meal_mutex, NULL) != 0)
+        return (1);
+    table->meal_mutex_initialized = 1;
+
+    return (0); // All good
+}
+
+
+void destroy_mutexes(t_table *table)
+{
+    for (int i = 0; i < table->forks_initialized; i++)
+        pthread_mutex_destroy(&table->forks[i]);
+
+    if (table->print_mutex_initialized)
+        pthread_mutex_destroy(&table->print_mutex);
+
+    if (table->sim_mutex_initialized)
+        pthread_mutex_destroy(&table->sim_mutex);
+
+    if (table->meal_mutex_initialized)
+        pthread_mutex_destroy(&table->meal_mutex);
+}
+
+
+void cleanup(t_table *table)
+{
+    destroy_mutexes(table);
+
+    free(table->forks);
+    free(table->threads);
+    free(table->philos);
 }
