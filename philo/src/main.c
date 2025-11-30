@@ -6,16 +6,16 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 18:41:18 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/29 17:35:37 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:10:09 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int 	main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_table table;
-	
+	t_table	table;
+
 	check_args(argc, argv);
 	(void) memset(&table, 0, sizeof(t_table));
 	init_table(&table, argc, argv);

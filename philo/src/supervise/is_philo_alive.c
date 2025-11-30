@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 16:10:23 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/29 16:20:02 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 11:54:35 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool	is_philo_alive(t_table *table, int philo_index)
 {
-	long last_meal;
-	
+	long	last_meal;
+
 	pthread_mutex_lock(&table->meal_mutex);
 	last_meal = table->philos[philo_index].last_meal;
 	pthread_mutex_unlock(&table->meal_mutex);

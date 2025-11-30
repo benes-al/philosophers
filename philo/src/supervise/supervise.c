@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:18:25 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 02:08:43 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 12:16:42 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,23 @@
 
 void	supervise(t_table *table)
 {
-	int	philo_index;
+	int	i;
 	int	satisfied_philos;
 
 	while (1)
 	{
-		philo_index = 0;
+		i = -1;
 		satisfied_philos = 0;
-		while (philo_index < table->nbr_of_philos)
+		while (++i < table->nbr_of_philos)
 		{
-			if (!is_philo_alive(table, philo_index))
+			if (!is_philo_alive(table, i))
 			{
 				change_boolean_simulation_should_end(table);
-				print_state_change(&table->philos[philo_index], DIED, RED);
+				print_state_change(&table->philos[i], DIED, RED);
 				return ;
 			}
-			if (table->nbr_of_meals_to_eat > 0
-				&& is_philo_satisfied(table, philo_index))
+			if (table->nbr_of_meals_to_eat > 0 && is_philo_satisfied(table, i))
 				satisfied_philos++;
-			philo_index++;
 		}
 		if (satisfied_philos == table->nbr_of_philos)
 		{

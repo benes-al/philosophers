@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:37:16 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 01:43:35 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 20:31:19 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	check_argc(const int argc)
 
 static void	check_argv(const int argc, const char **argv)
 {
-	if (atoi_mod(argv[1]) < 0 || atoi_mod(argv[2]) < 0 
+	if (atoi_mod(argv[1]) < 0 || atoi_mod(argv[2]) < 0
 		|| atoi_mod(argv[3]) < 0 || atoi_mod(argv[4]) < 0)
 		ft_error_exit("invalid argument");
 	if (argc == 6 && atoi_mod(argv[5]) < 0)
@@ -29,14 +29,14 @@ static void	check_argv(const int argc, const char **argv)
 
 static void	check_argv_values(const int argc, const char **argv)
 {
-	if (atoi_mod(argv[1]) < 1 || atoi_mod(argv[2]) < 1 
+	if (atoi_mod(argv[1]) < 1 || atoi_mod(argv[2]) < 1
 		|| atoi_mod(argv[3]) < 1 || atoi_mod(argv[4]) < 1)
 		ft_error_exit("invalid value");
 	if (argc == 6 && atoi_mod(argv[5]) == 0)
 		return ;
 }
 
-void check_args(int argc, char **argv)
+void	check_args(int argc, char **argv)
 {
 	check_argc(argc);
 	check_argv(argc, (const char **)argv);
