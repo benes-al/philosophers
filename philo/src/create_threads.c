@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 09:56:28 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:23:44 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 01:39:39 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	create_threads(t_table *table)
 			NULL, routine, &table->philos[i]) != 0)
 		{
 			cleanup(table);
-			ft_exit_error("Failed to creat thread.");
+			ft_error_exit("Failed to creat thread.");
 		}
 		i++;
 	}

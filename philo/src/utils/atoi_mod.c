@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:42:30 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/14 14:30:01 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 02:06:23 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	atoi_mod(const char *argv)
 {
-	int i;
-	int n;
-	
+	int	i;
+	int	n;
+
 	i = 0;
 	n = 0;
 	while (argv[i])
 	{
 		if (argv[i] < '0' || argv[i] > '9')
 			return (-1);
-		n = (n * 10) + (argv[i] - '0');		
+		n = (n * 10) + (argv[i] - '0');
 		i++;
 	}
-	return (n);	
+	return (n);
 }

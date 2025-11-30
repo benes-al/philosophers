@@ -6,13 +6,13 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:28:14 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/27 19:31:47 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 01:45:10 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void init_fork(t_table *table)
+static void init_forks(t_table *table)
 {
 	int	i;
 
@@ -25,13 +25,13 @@ static void init_fork(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		{
 			cleanup(table);
-			ft_exit_error("Failed to init forks mutex.");
+			ft_error_exit("Failed to init forks mutex.");
 		}	
 		i++;
 	}
 }
 
-static void init_philo(t_table *table)
+static void init_philos(t_table *table)
 {
 	int	i;
 
@@ -57,28 +57,28 @@ static void init_philo(t_table *table)
 
 void init_table(t_table *table, int argc, char **argv)
 {
-	table->nbr_of_philos = argv[1];
-	table->time_to_die = argv[2];
-	table->time_to_eat = argv[3];
-	table->time_to_sleep = argv[4];
+	table->nbr_of_philos = atoi(argv[1]);
+	table->time_to_die = atoi(argv[2]);
+	table->time_to_eat = atoi(argv[3]);
+	table->time_to_sleep = atoi(argv[4]);
 	if	(argc == 6)
-		table->nbr_of_meals_to_eat = argv[5];
+		table->nbr_of_meals_to_eat = atoi(argv[5]);
 	else
 		table->nbr_of_meals_to_eat = -1;
 	pthread_mutex_init(&table->print_state_change_mutex, NULL);
 	{
 		cleanup(table);
-		ft_exit_error("Failed to init print_state_change_mutex mutex.");
+		ft_error_exit("Failed to init print_state_change_mutex mutex.");
 	}
 	pthread_mutex_init(&table->simulation_should_end_mutex, NULL);
 	{
 		cleanup(table);
-		ft_exit_error("Failed to init simulation_should_end_mutex mutex.");
+		ft_error_exit("Failed to init simulation_should_end_mutex mutex.");
 	}
 	pthread_mutex_init(&table->meal_mutex, NULL);
 	{
 		cleanup(table);
-		ft_exit_error("Failed to init meal mutex.");
+		ft_error_exit("Failed to init meal mutex.");
 	}
 	init_forks(table);
 	init_philos(table);

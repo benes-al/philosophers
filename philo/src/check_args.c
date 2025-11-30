@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_args.c                                :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:37:16 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/15 16:29:44 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 01:43:35 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ static void	check_argv_values(const int argc, const char **argv)
 		|| atoi_mod(argv[3]) < 1 || atoi_mod(argv[4]) < 1)
 		ft_error_exit("invalid value");
 	if (argc == 6 && atoi_mod(argv[5]) == 0)
-		return (0);
+		return ;
 }
 
 void check_args(int argc, char **argv)
 {
 	check_argc(argc);
-	check_argv(argc, argv);
-	check_argv_values(argc, argv);
+	check_argv(argc, (const char **)argv);
+	check_argv_values(argc, (const char **)argv);
 }

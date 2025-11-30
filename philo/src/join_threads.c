@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 16:21:28 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/26 20:22:36 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 01:45:58 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void join_threads(t_table *table)
 		if(pthread_join(table->philos[i].thread, NULL) != 0)
 		{
 			cleanup(table);
-			ft_exit_error("Failed to join thread.");
+			ft_error_exit("Failed to join thread.");
 		}
 		i++;	
 	}

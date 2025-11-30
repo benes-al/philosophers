@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:37:05 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/29 16:45:32 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 01:47:03 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <limits.h>
 # include <sys/time.h>
 # include <pthread.h>
@@ -102,7 +103,7 @@ void	init_table(t_table *table, int argc, char **argv);
 void	create_threads(t_table *table);
 
 /******************************************************************************/
-/*                                 routine                                    */
+/*                                 ROUTINE                                    */
 /******************************************************************************/
 
 void	*routine(void *philos);
@@ -112,19 +113,19 @@ void	thinking(t_philo *philo);
 void	take_forks(t_philo *philo);
 void	drop_forks(t_philo *philo);
 void	print_state_change(t_philo *philo, char *message, int ansi_color);
-bool	read_value_simulation_should_end(t_table *table);
+bool	read_boolean_simulation_should_end(t_philo *philo);
 
 /******************************************************************************/
-/*                                 supervise                                  */
+/*                                 SUPERVISE                                  */
 /******************************************************************************/
 
 void	supervise(t_table *table);
 bool	is_philo_satisfied(t_table *table, int philo_index);
 bool	is_philo_alive(t_table *table, int philo_index);
-void	change_value_simulation_should_end(t_table *table);
+void	change_boolean_simulation_should_end(t_table *table);
 
 /******************************************************************************/
-/*                                 cleanup                                    */
+/*                                 CLEANUP                                    */
 /******************************************************************************/
 
 void	cleanup(t_table *table);

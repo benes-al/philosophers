@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 20:04:12 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/12 22:02:31 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/11/30 02:04:13 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	fd_putstr(char *message)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!message)
 		return ;
-	while(message[i])
+	while (message[i])
 	{
 		write(2, &message[i], 1);
 		i++;

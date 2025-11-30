@@ -18,13 +18,14 @@ PHILO_INC			= -Iincludes
 
 # Source files (paths relative to SRC_DIR)
 SRC_FILES = \
-	eat.c \
+	eating.c \
 	print_state_change.c \
 	read_boolean_simulation_should_end.c \
 	routine.c \
-	sleep.c \
+	sleeping.c \
 	take_drop_forks.c \
-	think.c \
+	thinking.c \
+	change_boolean_simulation_should_end.c \
 	is_philo_alive.c \
 	is_philo_satisfied.c \
 	supervise.c \
@@ -37,7 +38,6 @@ SRC_FILES = \
 	init_table.c \
 	join_threads.c \
 	main.c \
-	supervise.c
 
 # Convert source files to object files with prefix
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
