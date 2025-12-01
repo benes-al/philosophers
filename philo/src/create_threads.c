@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 09:56:28 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 12:02:09 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:40:31 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ void	create_threads(t_table *table)
 	table->start_time = timestamp();
 	while (i < table->nbr_of_philos)
 	{
-		pthread_create(&table->philos[i].thread,
-			NULL, routine, &table->philos[i]);
+		table->philos[i].last_meal = table->start_time;
+		i++;
+	}
+	i = 0;
+	while (i < table->nbr_of_philos)
+	{
 		if (pthread_create(&table->philos[i].thread,
 				NULL, routine, &table->philos[i]) != 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 19:18:25 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 12:16:42 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:39:10 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	supervise(t_table *table)
 		{
 			if (!is_philo_alive(table, i))
 			{
-				change_boolean_simulation_should_end(table);
 				print_state_change(&table->philos[i], DIED, RED);
+				change_boolean_simulation_should_end(table);
 				return ;
 			}
 			if (table->nbr_of_meals_to_eat > 0 && is_philo_satisfied(table, i))

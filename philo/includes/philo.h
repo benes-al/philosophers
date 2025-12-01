@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 16:37:05 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 20:30:14 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:42:15 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define EATING   "is eating"
 # define SLEEPING "is sleeping"
 # define THINKING "is thinking"
-# define DIED     " died"
+# define DIED     "died"
 
 /******************************************************************************/
 /*                               ENUMS                                        */
@@ -46,7 +46,7 @@ typedef enum t_color
 	GREEN		= 32,
 	BLUE		= 34,
 	SOME		= 0,
-	WHITE		= 37,
+	CYAN		= 36,
 	YELLOW		= 93,
 }	t_AnsiColor;
 
@@ -56,6 +56,10 @@ typedef enum t_color
 
 typedef struct s_table
 {
+	int				forks_initialized;
+	int				print_state_change_mutex_initialized;
+	int				simulation_should_end_mutex_initialized;
+	int				meal_mutex_initialized;
 	int				nbr_of_philos;
 	long			time_to_die;
 	long			time_to_eat;
@@ -68,7 +72,7 @@ typedef struct s_table
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	*forks;
 	struct s_philo	*philos;
-}				t_table;
+}	t_table;
 
 typedef struct s_philo
 {

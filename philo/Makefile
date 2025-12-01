@@ -7,7 +7,7 @@ NAME        = philo
 
 # Compiler and flags
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
+CFLAGS      = -Wall -Wextra -Werror -pthread -g
 
 # Source and object directories
 SRC_DIR     = src
@@ -37,7 +37,7 @@ SRC_FILES = \
 	create_threads.c \
 	init_table.c \
 	join_threads.c \
-	main.c \
+	main.c
 
 # Convert source files to object files with prefix
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC_FILES))

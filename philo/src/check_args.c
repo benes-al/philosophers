@@ -6,7 +6,7 @@
 /*   By: benes-al < benes-al@student.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:37:16 by benes-al          #+#    #+#             */
-/*   Updated: 2025/11/30 20:31:19 by benes-al         ###   ########.fr       */
+/*   Updated: 2025/12/01 12:40:15 by benes-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	check_argc(const int argc)
 {
-	if (argc < 5 && argc > 6)
+	if (argc < 5 || argc > 6)
 		ft_error_exit("invalid number of arguments");
 }
 
